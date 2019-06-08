@@ -16,8 +16,9 @@ module Options.Applicative.Help.Chunk
 
 import Control.Applicative
 import Control.Monad
-import Data.List.NonEmpty ( NonEmpty(..) )
+import Data.List.NonEmpty (NonEmpty(..))
 import Data.Maybe
+import Data.String (IsString (..))
 import Data.Semigroup
 import Prelude
 

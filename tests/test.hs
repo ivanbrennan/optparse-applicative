@@ -213,6 +213,17 @@ prop_long_equals = once $
       i = info (p <**> helper) fullDesc
   in checkHelpTextWith ExitSuccess (prefs helpLongEquals) "long_equals" i ["--help"]
 
+prop_short_no_separation :: Property
+prop_short_no_separation = once $
+  let p :: Parser String
+      p = option auto (   short 'i'
+                       <> help "integer value")
+      i = info (p <**> helper) fullDesc
+      result = execParserPure (prefs helpLongEquals) i ["--help"]
+  in assertError result $ \failure ->
+    let text = head . lines . fst $ renderFailure failure "test"
+    in  "Usage: test (-iARG)" === text
+
 prop_nested_fun :: Property
 prop_nested_fun = once $
   let p :: Parser (String, Maybe (String, Maybe String))
