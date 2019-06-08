@@ -51,7 +51,7 @@ optDesc pprefs style info opt =
         = let maybeSeparator = case safelast names of
                 Just (OptLong _) -> stringChunk "="
                 _elsewise        -> mempty
-          in descriptions <> maybeSeparator <> meta
+          in descriptions `mappend` maybeSeparator `mappend` meta
         | otherwise
         = descriptions <<+>> meta
       show_opt
