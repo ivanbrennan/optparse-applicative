@@ -222,7 +222,7 @@ prop_short_no_separation = once $
       result = execParserPure (prefs helpLongEquals) i ["--help"]
   in assertError result $ \failure ->
     let text = head . lines . fst $ renderFailure failure "test"
-    in  "Usage: test (-iARG)" === text
+    in  "Usage: test -iARG" === text
 
 prop_nested_fun :: Property
 prop_nested_fun = once $
